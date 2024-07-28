@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "config-flags"
+version = "0.1.0"
+description = "A tool to help me combine configuration files and flags in my scripts."
+authors = ["leomar"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
