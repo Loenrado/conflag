@@ -13,16 +13,16 @@ def run(
     cli_arguments: list[str] = sys.argv,
     print_sink=None,
 ):
-    if len(cli_arguments) <= 1:
+    # get rid of the first cli_argument that is unused.
+    _run(state, cli_arguments[1:], print_sink)
+
+
+def _run(state: State, cli_arguments: list[str], print_sink):
+    if len(cli_arguments) == 0:
         raise ValueError("not enough cli arguments")
 
-    # get rid of the first cli_argument that is unused.
-    run_helper(state, cli_arguments[1:], print_sink)
-
-
-def run_helper(state: State, cli_arguments: list[str], print_sink):
     if sub_state := state.sub_states.get(cli_arguments[0]):
-        return run_helper(sub_state, cli_arguments[1:], print_sink)
+        return _run(sub_state, cli_arguments[1:], print_sink)
 
     elif command := state.commands.get(cli_arguments[0]):
         return run_command(state, command, cli_arguments, print_sink)

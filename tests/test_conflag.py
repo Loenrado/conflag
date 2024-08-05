@@ -2,10 +2,8 @@ import io
 from enum import StrEnum, auto
 from typing import Annotated
 
-from conflag.decorator import command, register_sub_command
-from conflag.run import run
-from conflag.state.annotations import Argument, Option
-from conflag.state.state import State
+from conflag import command, register_sub_command, run
+from conflag.state import Argument, Option, State
 
 
 def test_run():
@@ -380,29 +378,3 @@ def test_run_with_casting():
     run(app_state, ["test.py", "foo", "--opt", "7", "1"])
     run(app_state, ["test.py", "foo", "1", "--opt", "7"])
     assert is_run[0]
-
-
-test_run()
-test_run_with_name()
-test_run_with_positional_argument()
-test_run_with_positional_arguments()
-test_run_with_too_many_positional_argument()
-test_run_with_not_enough_positional_argument()
-
-test_run_with_option()
-test_run_with_positional_argument_and_option()
-test_run_with_not_enough_positional_argument_and_option()
-test_run_with_positional_arguments_and_options()
-test_run_with_positional_argument_and_flags_at_end()
-
-test_run_with_substate()
-
-test_run_with_help()
-test_run_command_with_help()
-test_run_with_choices_help()
-
-test_run_with_config_file()
-test_run_with_config_file_override()
-test_run_with_config_file_options()
-
-test_run_with_casting()
