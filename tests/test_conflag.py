@@ -360,6 +360,35 @@ def test_run_with_config_file_options():
     assert is_run[0]
 
 
+def test_config_file_with_sub_commands():
+    config = {
+        "global": "tomato",
+        "foo": {
+            "local": "sand",
+            "bar": {
+                "buzz": "bazz",
+            },
+        },
+    }
+
+    app_state = State(config=config)
+
+    sub_state = State()
+
+    is_run = [False]
+
+    @command(sub_state)
+    def bar(buzz: str):
+        is_run[0] = True
+        assert "local" in sub_state.config
+        assert buzz == "bazz"
+
+    register_sub_command(app_state, sub_state, "foo")
+    run(app_state, ["test.py", "foo", "bar"])
+
+    assert is_run[0]
+
+
 def test_run_with_casting():
     app_state = State()
 

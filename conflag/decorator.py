@@ -71,4 +71,8 @@ def parse_annotated_args(args):
 
 
 def register_sub_command(state: State, sub_state: State, name: str):
+    print("within ", sub_state.config)
+    print("within ", bool(not sub_state.config))
+    if not sub_state.config:
+        sub_state.config = state.config.get(name, {})
     state.sub_states[name] = sub_state

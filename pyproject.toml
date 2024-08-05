@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "config-flags"
-version = "0.1.0"
+name = "conflag"
+version = "0.0.2"
 description = "A tool to help me combine configuration files and flags in my scripts."
 authors = ["leomar"]
 readme = "README.md"
